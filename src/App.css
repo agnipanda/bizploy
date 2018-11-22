@@ -30,3 +30,41 @@
     transform: rotate(360deg);
   }
 }
+
+.navbar-custom{
+    color: white;
+    background-color: teal;
+}
+a{
+    color: inherit;
+}
+.image{
+    float: left;
+    max-height: 200px;
+    max-width: 100px;
+}
+.custom-div{
+    display: flow-root;
+    max-width: 300px;
+    max-height: 200px;
+    overflow: hidden;
+
+}
+.custom-div div{
+    padding-left: 30%;
+    max-height: 200px;
+}
+
+.custom-div ul{
+    list-style-type: none;
+    overflow: hidden;
+    padding-top: 20px;
+}
+
+.custom-search{
+    width: 60%;
+}
+
+.custom-div a{
+    float: right;
+}
