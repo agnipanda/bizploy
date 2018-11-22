@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 class Header extends React.Component {
     render() {
@@ -10,8 +11,8 @@ class Header extends React.Component {
                   <a class="navbar-brand">Beans Love Beers</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right" id="ul-custom">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/favourites">Favourites</a></li>
+                  <li><Link to="/">Home</Link></li>
+                  <li><Link to="/favourites">Favourites</Link></li>
                 </ul>
               </div>
             </nav>

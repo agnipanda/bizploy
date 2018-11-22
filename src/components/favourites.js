@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import Header from './header'
 class Favourites extends React.Component {
 
     constructor(props){
@@ -65,6 +65,7 @@ class Favourites extends React.Component {
         else {
             return(
                 <center class='row'>
+                    <Header/>
                     <div class="input-group custom-search">
                       <input type="text" class="form-control" placeholder="Search"/>
                       <div class="input-group-btn">

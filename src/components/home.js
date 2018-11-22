@@ -1,5 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Header from './header'
+import SearchInput, {createFilter} from 'react-search-input'
+
+const KEYS_TO_FILTERS = ['name','description']
 
 class Home extends React.Component {
 
@@ -9,8 +13,11 @@ class Home extends React.Component {
             error: null,
             isLoaded: false,
             items: [],
-            presentStatus: this.props.favourites
+            presentStatus: this.props.favourites,
+            searchTerm: ''
         };
+        this.searchUpdated = this.searchUpdated.bind(this)
+
     }
     componentDidMount() {
         fetch("https://api.punkapi.com/v2/beers/")
@@ -45,6 +52,10 @@ class Home extends React.Component {
         this.forceUpdate()
     }
 
+    searchUpdated (term) {
+    this.setState({searchTerm: term})
+  }
+
     render() {
         console.log(this.props);
         const {error, isLoaded, items} = this.state;
@@ -66,6 +77,8 @@ class Home extends React.Component {
                     </div>
                 )
             }
+        const filteredItems = this.state.items.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
+
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -73,15 +86,26 @@ class Home extends React.Component {
         } else {
             return (
                 <center class='row'>
-                    <div class="input-group custom-search">
-                      <input type="text" class="form-control" placeholder="Search"/>
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                          <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                      </div>
-                  </div><br/><br/>
-                    {arr}
+                    <Header/>
+                        <SearchInput className="search-input" onChange={this.searchUpdated} />
+                        <br/>
+            {filteredItems.map(items => {
+              return (
+                  <div class="col-md-4">
+                    <div class="thumbnail custom-div">
+                        <img class="image" src={items.image_url} />
+                        <div>
+                            <a onClick={this.toggleFav.bind(this)} href="#"><span id={items.id - 1} class={this.status[this.state.presentStatus[items.id - 1]]}></span></a>
+                            <ul>
+                                <li><b>{items.name}</b></li><br/>
+                                <li>{items.description}</li>
+                            </ul>
+                        </div>
+                    </div>
+                  </div>
+              )
+            })}
+            <br/><br/>
                 </center>
             );
         }

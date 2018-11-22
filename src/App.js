@@ -12,7 +12,7 @@ class App extends Component {
             error : null,
             isLoaded : false,
             items : [],
-            favourites : [1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            favourites : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         }
         this.updateFavourites = this.updateFavourites.bind(this);
     }
@@ -29,7 +29,6 @@ class App extends Component {
       console.log(this.state.favourites);
     return (
       <div className="App" class="container">
-          <Header/>
              <Router>
                 <Switch>
                     <Route exact path="/" render = {() => <Home updateFavourites={this.updateFavourites} favourites={this.state.favourites} /> } />
