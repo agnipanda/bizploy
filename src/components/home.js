@@ -3,14 +3,13 @@ import PropTypes from 'prop-types'
 
 class Home extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             error: null,
             isLoaded: false,
             items: [],
-            presentStatus: [],
-            favourites : []
+            presentStatus: this.props.favourites
         };
     }
     componentDidMount() {
@@ -36,30 +35,22 @@ class Home extends React.Component {
 
         if(this.state.presentStatus[id] === 0){
             this.state.presentStatus[id] = 1
-            this.state.favourites = this.state.presentStatus;
-            this.props.updateFavourites(this.state.favourites);
+            this.props.updateFavourites(this.state.presentStatus);
         }
         else {
             this.state.presentStatus[id] = 0
             this.state.favourites = this.state.presentStatus;
-            this.props.updateFavourites(this.state.favourites);
+            this.props.updateFavourites(this.state.presentStatus);
         }
         this.forceUpdate()
     }
 
     render() {
+        console.log(this.props);
         const {error, isLoaded, items} = this.state;
             let arr = []
             let temp = []
             for (var i = 0; i < items.length; i++) {
-                if(this.flag === 0){
-                    for (var k = 0; k < items.length; k++) {
-                        this.state.presentStatus[k] = 0;
-                    }
-                    this.forceUpdate()
-                    this.flag = 1
-                }
-
                 arr.push(
                     <div class="col-md-4">
                       <div class="thumbnail custom-div">

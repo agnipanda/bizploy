@@ -35,10 +35,9 @@ class Favourites extends React.Component {
     }
 
     render () {
-        console.log(this.props.favourites);
+        console.log(this.state.presentStatus);
         const {error, isLoaded, items} = this.state;
-        let arr = []
-        let temp = []
+        let arr = [];
         for (var i = 0; i < items.length; i++) {
             if(this.state.presentStatus[i] === 1){
                 arr.push(
