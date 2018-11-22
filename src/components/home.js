@@ -10,6 +10,7 @@ class Home extends React.Component {
             isLoaded: false,
             items: [],
             presentStatus: [],
+            favourites : []
         };
     }
     componentDidMount() {
@@ -29,14 +30,19 @@ class Home extends React.Component {
     }
     status = ["btn-lg glyphicon glyphicon-star-empty","btn-lg glyphicon glyphicon-star"];
     flag = 0
+
     toggleFav(j) {
         let id = j.target.id;
 
         if(this.state.presentStatus[id] === 0){
             this.state.presentStatus[id] = 1
+            this.state.favourites = this.state.presentStatus;
+            this.props.updateFavourites(this.state.favourites);
         }
         else {
             this.state.presentStatus[id] = 0
+            this.state.favourites = this.state.presentStatus;
+            this.props.updateFavourites(this.state.favourites);
         }
         this.forceUpdate()
     }
@@ -53,6 +59,7 @@ class Home extends React.Component {
                     this.forceUpdate()
                     this.flag = 1
                 }
+
                 arr.push(
                     <div class="col-md-4">
                       <div class="thumbnail custom-div">
