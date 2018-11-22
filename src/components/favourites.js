@@ -66,14 +66,6 @@ class Favourites extends React.Component {
             return(
                 <center class='row'>
                     <Header/>
-                    <div class="input-group custom-search">
-                      <input type="text" class="form-control" placeholder="Search"/>
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                          <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                      </div>
-                  </div><br/><br/>
                     {arr}
                 </center>
             )
